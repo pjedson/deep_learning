@@ -52,6 +52,6 @@
 
 
    
-    "postCreateCommand": "python -m spacy download en_core_web_sm && python -c \"import ollama; print('Pulling nomic-embeded-text'); [_ for _ in ollama.pull('nomic-embed-text', stream=true)]; print('Ebeddin mode ready.')\"",
+    "postCreateCommand": "python -m spacy download en_core_web_sm && python -c \"import ollama; print('Pulling nomic-embed-text'); [_ for _ in ollama.pull('nomic-embed-text', stream=True)]; print('Ebeddin mode ready.')\"",
     "postStartCommand": "nohup jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --NotebookApp.token='' --Notebook.password='' --allow-root > /tmp/jupyter.log 2>&1 &"
 }
