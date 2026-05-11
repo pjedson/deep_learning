@@ -1,0 +1,57 @@
+{
+    "name": "Python Dev Container",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/workspace",
+    "shutdownAction": "stopCompose",
+
+    "forwardPorts": [8888, 11434],
+    "portsAttributes": {
+        "8888": {
+            "label": "Jupyter Notebook",
+            "onAutoForward": "openBrowser"
+        },
+        "11434": {
+            "label": "Ollama API",
+            "onAutoForward": "silent"
+        },
+        "8000": {
+            "label": "FastAPI",
+            "onAutoForward": "silent"
+        }
+    },
+
+    "containerEnv": {"OLLAMA_HOST": "http://ollama:11434"},
+
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.pylance",
+                "ms-toolsai.jupyter",
+                "ms-toolsai.jupyter-keymap",
+                "ms-toolsai.vscoe-jupyter-cell-tags",
+                "charliermarsh.ruff",
+                "tamasfe.evenbetter-toml",
+                "redhat.bscoe-yaml",
+                "yzhang.markdown-all-in-one"
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "editor.formatOnSave": true,
+                "editor.codeActionsOnSave": {
+                    "source.organizeImports": true
+                },
+                "[python]": {
+                    "editor.defaultFormatter": "charlermarsh.ruff"
+                },
+                "jupyter.jupyterServerType": "remote"
+            }
+        }
+    },
+
+
+   
+    "postCreateCommand": "python -m spacy download en_core_web_sm && python -c \"import ollama; print('Pulling nomic-embeded-text'); [_ for _ in ollama.pull('nomic-embed-text', stream=true)]; print('Ebeddin mode ready.')\"",
+    "postStartCommand": "nohup jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --NotebookApp.token='' --Notebook.password='' --allow-root > /tmp/jupyter.log 2>&1 &"
+}

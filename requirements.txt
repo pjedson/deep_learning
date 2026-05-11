@@ -1,0 +1,48 @@
+# Core Jupyter dependencies
+jupyterlab>=4.1
+ipykernel>=6.29
+ipywidgets>=8.1
+notebook>=7.1
+
+# Ollama dependencies
+ollama>=0.2
+
+# Agentic dependencies
+langchain>=0.2
+langchain-community>=0.2
+langchain-ollama>=0.1
+llama-index>=0.10
+llama-index-llms-ollama>=0.2
+autogen-agentchat>=0.4
+
+# Vector database dependencies
+faiss-cpu>=1.7
+chromadb>=0.51
+sentence-transformers>=2.7
+
+# Text and language processing dependencies
+nltk>=3.8
+spacy>=3.7
+transformers>=4.40
+pypdf>=4.2
+tiktoken>=0.7
+
+# Voce and Audio processing dependencies
+pyaudio>=0.2.14
+SpeechRecognition>=3.10
+pyttsx3>=2.90
+soundfile>=0.12
+sounddevice>=0.4
+openai-whisper>=20231117
+
+# Web API dependencies
+fastapi>=0.111
+uvicorn[standard]>=0.29
+httpx>=0.27
+
+# Development Utils
+python-dotenv>=1.0
+rich>=13.7
+pydantic>=2.7
+loguru>=0.7
+tenacity>=8.3

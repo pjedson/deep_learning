@@ -216,3 +216,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+* text=auto eol=lf
+*.{cmd,bat} text eol=crlf

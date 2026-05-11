@@ -1,0 +1,40 @@
+services:
+  app:
+    build: 
+      context: ..
+      dockerfile: Dockerfile
+      args:
+          HTTP_PROXY: ${HTTP_PROXY:-}
+          HTTPS_PROXY: ${HTTPS_PROXY:-}
+          NO_PROXY: ${NO_PROXY:-}
+
+    ports:
+      - "8888:8888"
+      - "8000:8000"
+    volumes:
+      - ../projects:/workspace/projects
+    environment:
+        OLLAMA_HOST: http://ollama:11434
+        PYTHONDONTWRITEBYTECODE: "1"
+
+
+    command: sleep infinity
+    depends_on:
+      ollama:
+        condition: service_healthy
+
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-models:/root/.ollama
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 15s
+volumes:
+  ollama-models: 
+    name: localai-ollama-models
