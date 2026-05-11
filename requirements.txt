@@ -13,6 +13,7 @@ langchain-community>=0.2
 langchain-ollama>=0.1
 llama-index>=0.10
 llama-index-llms-ollama>=0.2
+crewai>=0.51
 autogen-agentchat>=0.4
 
 # Vector database dependencies
